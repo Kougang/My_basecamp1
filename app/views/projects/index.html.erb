@@ -1,0 +1,29 @@
+project #index
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  </body>
+
+    <% if user_signed_in? %>
+      <p>Signed in as <%= current_user.email %></p>
+
+    <div>
+      <%= link_to "new project", new_project_path, class: "text-decoration-none text-dark" %>
+    </div>
+
+    <div>
+      <% @projects.each do |project| %>
+        <%= link_to project.name, project_path(project), class: "text-decoration-none text-dark" %><br>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark" %>
+    </div>
+    <% end %>
+    <%= yield %>
+
+  </body>
+</html>

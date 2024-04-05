@@ -1,0 +1,16 @@
+project #show
+
+
+
+<%= link_to "project index", projects_path, class: "text-decoration-none  text-dark"  %> <br/>
+<%= link_to "edit project", edit_project_path(@project), class: "text-decoration-none  text-dark"  %><br/>
+
+<%= form_tag project_path(@project), method: :delete do %>    
+  <%= submit_tag "Supprimer ce projet", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce projet ?" } %>
+<% end %>
+
+<%# <%= link_to "update project", project_path(@project), method: :patch %><br/> 
+
+<br>
+<%= @project.name %><br>
+<%= @project.description %>
