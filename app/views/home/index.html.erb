@@ -1,3 +1,42 @@
-hello word!!
+<% if user_signed_in? %>
+    <p>Signed in as <%= current_user.email %></p>
+
+    <h1>Liste des utilisateurs</h1>
+
+    <ul>
+    <% @users.each do |user| %>
+        <li>
+        <%= user.email %> 
+        <%# <%= user.name %> 
+        <%# code de suppression %>
+        <%= form_tag delete_user_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur?' } do %>    
+            <%= submit_tag 'Supprimer' %>
+        <% end %>
+
+        <%# code de basculement %>
+        <%= form_tag toggle_role_user_path(user), method: :put do %>    
+        <% if user.role == 'user' %>
+            <%= submit_tag 'Passer en tant qu\'administrateur', class: 'btn btn-primary' %>
+        <% else %>
+            <%= submit_tag 'Passer en tant qu\'utilisateur', class: 'btn btn-secondary' %>
+        <% end %>
+        <% end %>
 
 
+        </li>
+    <% end %>
+    </ul>
+
+ <div>
+    <%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark" %>
+</div>
+<% end %>
+<%= yield %>
+
+<%# <%= form_tag toggle_role_user_path(current_user), method: :put do %>    
+<%#  <% if current_user.role == 'user' %>
+<%#    <%= submit_tag 'Passer en tant qu\'administrateur', class: 'btn btn-primary' %>
+<%#  <% else %>
+<%#    <%= submit_tag 'Passer en tant qu\'utilisateur', class: 'btn btn-secondary' %>
+<%#  <% end %>
+<%#<% end %> 
