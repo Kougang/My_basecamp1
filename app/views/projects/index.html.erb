@@ -15,7 +15,7 @@ project #index
 
     <div>
       <% @projects.each do |project| %>
-        <%= link_to project.name, project_path(project), class: "text-decoration-none text-dark" %><br>
+       <li> <%= link_to project.name, project_path(project), class: "text-decoration-none text-dark" %><br></li>
       <% end %>
     </div>
 
