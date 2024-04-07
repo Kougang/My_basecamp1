@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
     def toggle_role_user
         @user = User.find(params[:id])
-        
+
         if @user.role == 'user'
           @user.update(role: 'admin')
         else

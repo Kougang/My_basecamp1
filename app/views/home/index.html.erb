@@ -7,7 +7,7 @@
     <% @users.each do |user| %>
         <li>
         <%= user.email %> 
-        <%# <%= user.name %> 
+        <%= user.first_name  %>
         <%# code de suppression %>
         <%= form_tag delete_user_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur?' } do %>    
             <%= submit_tag 'Supprimer' %>

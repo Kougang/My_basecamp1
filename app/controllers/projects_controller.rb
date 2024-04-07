@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_project, only: [:edit, :update, :destroy]
+    before_action :set_project, only: [:edit, :update, :destroy, :show, :add_user]
 
     def index
         @projects = Project.all
@@ -12,6 +12,8 @@ class ProjectsController < ApplicationController
 
     def show
         @project = Project.find(params['id'])
+        @user_project = UserProject.new # Créer une nouvelle instance de UserProject
+
     end
 
     def create
@@ -41,6 +43,26 @@ class ProjectsController < ApplicationController
         redirect_to projects_path, notice: "Le projet a été supprimé avec succès."
     end
 
+
+    def add_user
+        if current_user.admin?
+          user = User.find_by(email: params[:email])
+          if user
+            if @project.users.include?(user)
+              flash[:alert] = "L'utilisateur est déjà affecté à ce projet."
+            else
+              @project.users << user
+              flash[:notice] = "L'utilisateur a été ajouté au projet avec succès."
+            end
+          else
+            flash[:alert] = "L'utilisateur avec l'adresse e-mail fournie n'existe pas."
+          end
+        else
+          flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
+        end
+        redirect_to project_path(@project)
+    end
+
     protected
 
     def permitted_params
@@ -50,5 +72,6 @@ class ProjectsController < ApplicationController
     def set_project
         @project = Project.find(params['id'])
     end
+
 
 end

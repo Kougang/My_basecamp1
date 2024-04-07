@@ -3,15 +3,6 @@ Rails.application.routes.draw do
   get 'roles/remove_admin'
   get 'logout/destroy'
   devise_for :users
- 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  # get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 
   # delete 'users/:id', to: 'home#destroy', as: 'delete_user'
   delete 'users/:id', to: 'home#destroy', as: :delete_user
@@ -22,5 +13,12 @@ Rails.application.routes.draw do
   get '/logout', to: 'logout#destroy', as: :logout
 
   root "home#index"
-  resources :projects
+  # resources :projects
+
+  get 'projects/:id/add_user', to: 'projects#add_user', as: 'add_user_to_project'
+
+  # resources :projects do
+  #   post 'add_user', on: :member
+  # end
 end
+
