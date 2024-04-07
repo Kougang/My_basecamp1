@@ -1,7 +1,7 @@
 <h1><% if user_signed_in?  %></h1>
 
         <p>Signed in as <%= current_user.first_name %></p>
-        <p>pour gerer les utilidateur vous devrez vous connecter en tant aue admin</>
+        <p>pour gerer les utilidateur vous devrez vous connecter en tant aue admin</p>
         <p><%= link_to "manage users", view_path, class: "text-decoration-none text-blue" %></p>
         <p><%= link_to "manage projects", index_path,  class: "text-decoration-none text-blue" %></p>
 
