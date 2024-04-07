@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'logout/destroy'
   devise_for :users
 
+
   # delete 'users/:id', to: 'home#destroy', as: 'delete_user'
   delete 'users/:id', to: 'home#destroy', as: :delete_user
 
@@ -15,12 +16,11 @@ Rails.application.routes.draw do
   root "home#index"
   resources :projects
 
-  # post 'projects/:id/add_user', to: 'projects#add_user', as: 'add_user_to_project'
+  post 'projects/:id/add_user', to: 'projects#add_user', as: 'project_add_user'
 
 
-  resources :projects do
-    post 'add_user', on: :member
-  end
+  # resources :projects do
+  #   post 'add_user', on: :member, as: 'project_add_user'
+  # end
   
 end
-

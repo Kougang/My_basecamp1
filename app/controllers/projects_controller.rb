@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
 
 
     def add_user
-        if current_user.admin?
+        if current_user.role == 'admin'
           user = User.find_by(email: params[:email])
           if user
             if @project.users.include?(user)

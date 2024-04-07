@@ -1,5 +1,5 @@
-<% if user_signed_in? %>
-    <p>Signed in as <%= current_user.email %></p>
+<% if user_signed_in? and current_user.role == 'admin' %>
+    <p>Signed in as <%= current_user.first_name %></p>
 
     <h1>Liste des utilisateurs</h1>
 
