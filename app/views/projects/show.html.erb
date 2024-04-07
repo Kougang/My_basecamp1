@@ -27,13 +27,13 @@ project #show
 
 
 <!-- Formulaire pour ajouter un utilisateur au projet -->
-<% if current_user.role == 'admin' %>
-  <%= form_with(url: project_add_user_path(@project), method: :get) do |f| %>
-    <div class="form-group">
-      <%= f.label :email, "Adresse e-mail de l'utilisateur" %>
-      <%= f.email_field :email, class: "form-control", required: true %>
-      <%= f.submit "Ajouter utilisateur au projet" %>
-    </div>
-  <% end %>
-<% end %>
+      <% if current_user.role == 'admin' %>
+        <%= form_with(url: project_add_user_path(@project), method: :post) do |f| %>
+          <div class="form-group">
+            <%= f.label :email, "Adresse e-mail de l'utilisateur" %>
+            <%= f.email_field :email, class: "form-control", required: true %>
+            <%= f.submit "Ajouter utilisateur au projet" %>
+          </div>
+        <% end %>
+      <% end %>
 

@@ -13,12 +13,14 @@ Rails.application.routes.draw do
   get '/logout', to: 'logout#destroy', as: :logout
 
   root "home#index"
-  # resources :projects
+  resources :projects
 
-  get 'projects/:id/add_user', to: 'projects#add_user', as: 'add_user_to_project'
+  # post 'projects/:id/add_user', to: 'projects#add_user', as: 'add_user_to_project'
 
-  # resources :projects do
-  #   post 'add_user', on: :member
-  # end
+
+  resources :projects do
+    post 'add_user', on: :member
+  end
+  
 end
 
