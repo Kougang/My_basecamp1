@@ -18,9 +18,7 @@ Rails.application.routes.draw do
 
   post 'projects/:id/add_user', to: 'projects#add_user', as: 'project_add_user'
 
+  get 'view', to: 'home#view'
+  get 'index', to: 'projects#index'
 
-  # resources :projects do
-  #   post 'add_user', on: :member, as: 'project_add_user'
-  # end
-  
 end

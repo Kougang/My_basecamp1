@@ -1,4 +1,4 @@
-project #index
+<%# project #index %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,23 +7,29 @@ project #index
   </body>
 
     <% if user_signed_in? %>
-      <p>Signed in as <%= current_user.email %></p>
+        <p>Signed in as <%= current_user.first_name %></p><br>
+         <%= link_to "Welcome page", root_path %>
 
-    <div>
-      <%= link_to "new project", new_project_path, class: "text-decoration-none text-dark" %>
-    </div>
+        <div>
+          <%= link_to "new project", new_project_path, class: "text-decoration-none text-blue" %>
+        </div>
 
-    <div>
-      <% @projects.each do |project| %>
-       <li> <%= link_to project.name, project_path(project), class: "text-decoration-none text-dark" %><br></li>
-      <% end %>
-    </div>
+        <div>
+          
+          <p>liste des projects </p>
+          <em>click sur un project pour plus d'option<em>
 
-    <div>
-      <%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark" %>
-    </div>
+          <% @projects.each do |project| %>
+          <li> <%= link_to project.name, project_path(project), class: "text-decoration-none text-blue" %><br></li>
+          <% end %>
+        </div>
+
+        <div>
+          <%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-blue  btn btn-danger" %>
+        </div>
     <% end %>
     <%= yield %>
+   
 
   </body>
 </html>

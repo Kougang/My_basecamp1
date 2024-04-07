@@ -1,0 +1,41 @@
+<h1><% if user_signed_in?  %></h1>
+
+    <p>Signed in as <%= current_user.first_name %></p>
+
+    <p><%= link_to "Welcome page", root_path %><p>
+
+    <%if current_user.role == 'admin'%>
+
+        <h1>USERS LIST</h1>
+
+        <ul>
+        <% @users.each do |user| %>
+            <li>
+            <%= user.email %> 
+            <%= user.first_name  %>
+            <%# code de suppression %>
+            <%= form_tag delete_user_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur?' } do %>    
+                <%= submit_tag 'Delete' %>
+            <% end %>
+
+            <%# code de basculement %>
+            <%= form_tag toggle_role_user_path(user), method: :put do %>    
+            <% if user.role == 'user' %>
+                <%= submit_tag 'Pass as admin', class: 'btn btn-primary' %>
+            <% else %>
+                <%= submit_tag 'Pass as user', class: 'btn btn-secondary' %>
+            <% end %>
+            <% end %>
+            </li>
+        <% end %>
+        </ul>
+    <%end%>
+
+<div>
+    <p><%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark btn btn-danger" %></p>
+    
+</div>
+
+<% end %>
+<%= yield %>
+

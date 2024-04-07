@@ -8,10 +8,14 @@ class HomeController < ApplicationController
       @users = User.all
     end
 
+    def view
+      @users = User.all
+    end
+
     def destroy
         @user = User.find(params[:id])
         @user.destroy
-        redirect_to root_path, notice: 'User was successfully deleted.'
+        redirect_to view_path, notice: 'User was successfully deleted.'
     end
 
     def toggle_role_user

@@ -1,26 +1,29 @@
-project #show
+<p><%= link_to "Welcome page", root_path, class: "text-decoration-none  text-blue" %><p>
+
+<p><%= link_to "project index", projects_path, class: "text-decoration-none  text-blue"  %></p>
+<p><%= link_to "edit project", edit_project_path(@project), class: "text-decoration-none  text-blue"  %></p>
+<p><%= link_to "manage projects", index_path,class: "text-decoration-none  text-blue" %></p>
 
 
-
-<%= link_to "project index", projects_path, class: "text-decoration-none  text-dark"  %> <br/>
-<%= link_to "edit project", edit_project_path(@project), class: "text-decoration-none  text-dark"  %><br/>
-
+<%# affichage des projects %>
 <%= form_tag project_path(@project), method: :delete do %>    
-  <%= submit_tag "Supprimer ce projet", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce projet ?" } %>
+  <%= submit_tag "Delete this project", data: { confirm: "Êtes-vous sûr de vouloir supprimer ce projet ?" }, class: " btn btn-danger" %>
 <% end %>
 
-<%# <%= link_to "update project", project_path(@project), method: :patch %><br/> 
 
 <br>
-<%= @project.name %><br>
-<%= @project.description %>
+<p> nom du project:<br><%= @project.name %><br></p>
+<p>description:<br><em><%= @project.description %><em></p>
 
 
 <!-- Affichage des utilisateurs affectés au projet -->
-<p>Utilisateurs affectés au projet :</p>
+<h2>Utilisateurs affectés au projet :</h2>
+
+<p><em>To add users to a project, log in as admin<em><p>
+
 <ul>
   <% @project.users.each do |user| %>
-    <li><%= user.email %></li>
+    <li>Nom:    <%= user.first_name %><br>email:    <%= user.email %></li>
   <% end %>
 </ul>
 
@@ -30,10 +33,12 @@ project #show
       <% if current_user.role == 'admin' %>
         <%= form_with(url: project_add_user_path(@project), method: :post) do |f| %>
           <div class="form-group">
-            <%= f.label :email, "Adresse e-mail de l'utilisateur" %>
+            <%= f.label :email, "user mail" %>
             <%= f.email_field :email, class: "form-control", required: true %>
-            <%= f.submit "Ajouter utilisateur au projet" %>
+            <%= f.submit "add user on projet" %>
           </div>
         <% end %>
       <% end %>
 
+
+<p><%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark btn btn-danger" %></p>>

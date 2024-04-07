@@ -1,42 +1,13 @@
-<% if user_signed_in? and current_user.role == 'admin' %>
-    <p>Signed in as <%= current_user.first_name %></p>
+<h1><% if user_signed_in?  %></h1>
 
-    <h1>Liste des utilisateurs</h1>
-
-    <ul>
-    <% @users.each do |user| %>
-        <li>
-        <%= user.email %> 
-        <%= user.first_name  %>
-        <%# code de suppression %>
-        <%= form_tag delete_user_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur?' } do %>    
-            <%= submit_tag 'Supprimer' %>
-        <% end %>
-
-        <%# code de basculement %>
-        <%= form_tag toggle_role_user_path(user), method: :put do %>    
-        <% if user.role == 'user' %>
-            <%= submit_tag 'Passer en tant qu\'administrateur', class: 'btn btn-primary' %>
-        <% else %>
-            <%= submit_tag 'Passer en tant qu\'utilisateur', class: 'btn btn-secondary' %>
-        <% end %>
-        <% end %>
+        <p>Signed in as <%= current_user.first_name %></p>
+        <p>pour gerer les utilidateur vous devrez vous connecter en tant aue admin</>
+        <p><%= link_to "manage users", view_path, class: "text-decoration-none text-blue" %></p>
+        <p><%= link_to "manage projects", index_path,  class: "text-decoration-none text-blue" %></p>
 
 
-        </li>
-    <% end %>
-    </ul>
 
- <div>
-    <%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark" %>
-</div>
-<% end %>
-<%= yield %>
+        <p><%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark btn btn-danger" %></p>
+        
 
-<%# <%= form_tag toggle_role_user_path(current_user), method: :put do %>    
-<%#  <% if current_user.role == 'user' %>
-<%#    <%= submit_tag 'Passer en tant qu\'administrateur', class: 'btn btn-primary' %>
-<%#  <% else %>
-<%#    <%= submit_tag 'Passer en tant qu\'utilisateur', class: 'btn btn-secondary' %>
-<%#  <% end %>
-<%#<% end %> 
+    <%end%>

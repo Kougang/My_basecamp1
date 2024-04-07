@@ -1,12 +1,14 @@
-project #new <br>
+<p><%= link_to "Welcome page", root_path, class: "text-decoration-none  text-blue" %><p>
 
+<p><%= link_to "project index", projects_path, class: "text-decoration-none  text-blue"  %></p>
 
-<%= simple_form_for @project do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.submit  %>
-<% end %>
-
+<div>
+    <%= simple_form_for @project do |f| %>
+      <p><%= f.input :name %></p>
+      <p><%= f.input :description %></p>
+      <p><%= f.submit  %></p>
+    <% end %>
+</div>
 
 
 
