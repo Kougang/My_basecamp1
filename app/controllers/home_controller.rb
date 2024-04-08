@@ -19,6 +19,8 @@ class HomeController < ApplicationController
     end
 
     def toggle_role_user
+
+      # ce code se repete dans projects controller
         @user = User.find(params[:id])
 
         if @user.role == 'user'
@@ -26,7 +28,7 @@ class HomeController < ApplicationController
         else
           @user.update(role: 'user')
         end
-        redirect_to root_path, notice: "Le rôle de l'utilisateur a été modifié avec succès."
+        redirect_to view_path, notice: "Le rôle de l'utilisateur a été modifié avec succès."
     end
     
 end

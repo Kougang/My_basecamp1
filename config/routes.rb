@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete 'users/:id', to: 'home#destroy', as: :delete_user
 
   put 'toggle_role_user/:id', to: 'home#toggle_role_user', as: 'toggle_role_user'
+  # put 'show/:id', to: 'projects#show', as: 'show_role_user'
 
   # Route spécifique pour la suppression d'un projet
   get '/logout', to: 'logout#destroy', as: :logout

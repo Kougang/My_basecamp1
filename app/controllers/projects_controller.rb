@@ -14,6 +14,15 @@ class ProjectsController < ApplicationController
         @project = Project.find(params['id'])
         @user_project = UserProject.new # Créer une nouvelle instance de UserProject
 
+        # @user = User.find(params[:id])
+
+        # if @user.role == 'user'
+        #   @user.update(role: 'admin')
+        # else
+        #   @user.update(role: 'user')
+        # end
+        # # redirect_to view_path, notice: "Le rôle de l'utilisateur a été modifié avec succès."
+
     end
 
     def create

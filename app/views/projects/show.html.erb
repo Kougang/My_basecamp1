@@ -24,6 +24,14 @@
 <ul>
   <% @project.users.each do |user| %>
     <li>Nom:    <%= user.first_name %><br>email:    <%= user.email %></li>
+    <%# code de basculement %>
+            <%= form_tag toggle_role_user_path(user), method: :put do %>    
+            <% if user.role == 'user' %>
+                <%= submit_tag 'Pass as admin', class: 'btn btn-primary' %>
+            <% else %>
+                <%= submit_tag 'Pass as user', class: 'btn btn-secondary' %>
+            <% end %>
+            <% end %>
   <% end %>
 </ul>
 
@@ -41,4 +49,4 @@
       <% end %>
 
 
-<p><%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark btn btn-danger" %></p>>
+<p><%= link_to "Déconnexion", logout_path, method: :delete, class: "text-decoration-none text-dark btn btn-danger" %></p>
