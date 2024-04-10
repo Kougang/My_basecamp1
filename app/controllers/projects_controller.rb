@@ -14,14 +14,6 @@ class ProjectsController < ApplicationController
         @project = Project.find(params['id'])
         @user_project = UserProject.new # Créer une nouvelle instance de UserProject
 
-        # @user = User.find(params[:id])
-
-        # if @user.role == 'user'
-        #   @user.update(role: 'admin')
-        # else
-        #   @user.update(role: 'user')
-        # end
-        # # redirect_to view_path, notice: "Le rôle de l'utilisateur a été modifié avec succès."
 
     end
 
@@ -47,8 +39,16 @@ class ProjectsController < ApplicationController
     end 
 
     def destroy
+        @project = Project.find(params[:id])
+
+        # Récupérer les utilisateurs associés au projet
+        @users = @project.users
+    
+        # Supprimer les utilisateurs associés
+        @users.destroy_all if @users.any?
         # @project = Project.find(params[:id])
         @project.destroy
+        
         redirect_to projects_path, notice: "Le projet a été supprimé avec succès."
     end
 
