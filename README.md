@@ -17,8 +17,8 @@ Things you may want to cover:
 
 - Database initialization
   create table:
-  project
-  users
+  project,
+  users,
   users_project
 
 - How to run the test suite
